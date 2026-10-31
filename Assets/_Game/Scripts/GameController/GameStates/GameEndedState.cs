@@ -20,6 +20,7 @@ public class GameEndedState : State
         Debug.Log("STATE: Ended Game");
         Debug.Log("Listen for Player Inputs");
         Debug.Log("Display Game End Screen");
+        _controller.GameHUDController.DisplayGameEndedMenu();
     }
 
     public override void Exit()
@@ -37,11 +38,11 @@ public class GameEndedState : State
         base.Tick();
 
         // get player input to go to main manu
-        if (_controller.Input.IsSpacePressed == true)
+        /*if (_controller.Input.IsSpacePressed == true)
         {
             Debug.Log("To Main Menu");
             SceneManager.LoadScene("MainMenu");
             //reload level, change back to SetupState, etc.
-        }
+        }*/
     }
 }
