@@ -1,5 +1,6 @@
 using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine;
+using UnityEngine.InputSystem;
 // Force the script to use the New Input System's Touch and TouchPhase
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch; // Avoid ambiguity
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
@@ -7,6 +8,7 @@ using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 public class InputBroadcaster : MonoBehaviour
 {
     public bool IsTapPressed { get; private set; } = false;
+    public bool IsSpacePressed { get; private set; } = false;
 
     private void OnEnable()
     {
@@ -38,6 +40,16 @@ public class InputBroadcaster : MonoBehaviour
                     IsTapPressed = false;
                     break;
             }
+        }
+
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            IsSpacePressed = true;
+            Debug.Log("Space key pressed this frame!");
+        }
+        else
+        {
+            IsSpacePressed = false;
         }
     }
 }

@@ -40,6 +40,7 @@ public class GamePlayState : State
         if (_controller.Input.IsTapPressed == true)
         {
             Debug.Log("You Win!");
+            _stateMachine.ChangeState(_stateMachine.EndedState);
             //reload level, change back to SetupState, etc.
         }
 
@@ -47,6 +48,7 @@ public class GamePlayState : State
         else if (StateDuration >= _controller.TapLimitDuration)
         {
             Debug.Log("You Lose");
+            _stateMachine.ChangeState(_stateMachine.EndedState);
             // Lose State, reload level, change back to SetupState, etc.
         }
     }
