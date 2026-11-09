@@ -8,15 +8,19 @@ public class MainMenuController : MonoBehaviour
     private VisualElement _startMenuVisualTree;
     private Button _startButton;
     private Button _quitButton;
+    private Label _highScoreLabel;
 
     private void Awake()
     {
+        SaveManager.Instance.Load();
         _document = GetComponent<UIDocument>();
         // get menu sub object
         _startMenuVisualTree = _document.rootVisualElement.Q("StartMenuVisualTree");
         // assign button callbacks
         _startButton = _startMenuVisualTree.Q("StartButton") as Button;
         _quitButton = _startMenuVisualTree.Q("QuitButton") as Button;
+        _highScoreLabel = _startMenuVisualTree.Q("HighScoreText") as Label;
+        ChangeHighScoreText();
     }
 
     private void OnEnable()
@@ -44,5 +48,10 @@ public class MainMenuController : MonoBehaviour
 #else
             Application.Quit();
 #endif
+    }
+
+    private void ChangeHighScoreText()
+    {
+        _highScoreLabel.text = "High Score: " + SaveManager.Instance.ActiveSaveData.Score;
     }
 }
