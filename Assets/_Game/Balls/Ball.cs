@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    [SerializeField] private BallsData _data;
+    [SerializeField] public BallsData _data;
 
     private SpriteRenderer spriteRenderer;
 

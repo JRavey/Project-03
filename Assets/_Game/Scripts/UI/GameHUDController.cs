@@ -17,6 +17,7 @@ public class GameHUDController : MonoBehaviour
     // Game HUD
     private VisualElement _gameplayHUDVisualTree;
     private Label _score;
+    private ListView _ballView;
 
     private void Start()
     {
@@ -41,7 +42,16 @@ public class GameHUDController : MonoBehaviour
         _endScore = _endMenuVisualTree.Q("EndScore") as Label;
         _highScore = _endMenuVisualTree.Q("HighScore") as Label;
 
+        _ballView = _gameplayHUDVisualTree.Q("BallView") as ListView;
         _score = _gameplayHUDVisualTree.Q("Score") as Label;
+
+        _ballView.makeItem = () => new Image();
+        _ballView.bindItem = (VisualElement element, int index) =>
+        {
+            (element as Image).sprite = _gameController.BallManager.gameBalls[index]._data.Visuals;
+        };
+        _ballView.itemsSource = _gameController.BallManager.gameBalls;
+        _ballView.Rebuild();
     }
 
     private void OnEnable()

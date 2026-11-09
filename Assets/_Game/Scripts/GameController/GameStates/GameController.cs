@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
     [SerializeField] public InputBroadcaster _input;
     [SerializeField] public GameHUDController _gameHUDController;
     [SerializeField] public GameScore _gameScore;
+    [SerializeField] public BallManager _ballManager;
 
 
     public float TapLimitDuration => _tapLimitDuration;
@@ -22,6 +23,7 @@ public class GameController : MonoBehaviour
     public InputBroadcaster Input => _input;
     public GameHUDController GameHUDController => _gameHUDController;
     public GameScore GameScore => _gameScore;
+    public BallManager BallManager => _ballManager;
 
     public void ReloadLevel()
     {
