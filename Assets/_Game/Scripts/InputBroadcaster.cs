@@ -10,6 +10,8 @@ public class InputBroadcaster : MonoBehaviour
     public bool IsTapPressed { get; private set; } = false;
     public bool IsSpacePressed { get; private set; } = false;
 
+    [SerializeField] private GameController _gameController;
+
     private void OnEnable()
     {
         EnhancedTouchSupport.Enable(); // Must be enabled once
@@ -44,6 +46,7 @@ public class InputBroadcaster : MonoBehaviour
 
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
+            _gameController.GameScore.AddScore(1);
             IsSpacePressed = true;
             Debug.Log("Space key pressed this frame!");
         }

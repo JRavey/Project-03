@@ -11,14 +11,22 @@ public class GameHUDController : MonoBehaviour
     private VisualElement _endMenuVisualTree;
     private Button _retryButton;
     private Button _toMainMenuButton;
+    private Label _endScore;
+    private Label _highScore;
+
+    // Game HUD
+    private VisualElement _gameplayHUDVisualTree;
+    private Label _score;
 
     private void Start()
     {
         DisableAllDisplays();
+        _gameplayHUDVisualTree.style.display = DisplayStyle.Flex;
     }
     private void DisableAllDisplays()
     {
         _endMenuVisualTree.style.display = DisplayStyle.None;
+        _gameplayHUDVisualTree.style.display = DisplayStyle.None;
     }
 
     private void Awake()
@@ -26,25 +34,35 @@ public class GameHUDController : MonoBehaviour
         _document = GetComponent<UIDocument>();
         // get menu sub object
         _endMenuVisualTree = _document.rootVisualElement.Q("GameEndedMenuVisualTree");
+        _gameplayHUDVisualTree = _document.rootVisualElement.Q("HUD");
         // assign button callbacks
         _retryButton = _endMenuVisualTree.Q("RetryButton") as Button;
         _toMainMenuButton = _endMenuVisualTree.Q("MainMenuButton") as Button;
+        _endScore = _endMenuVisualTree.Q("EndScore") as Label;
+        _highScore = _endMenuVisualTree.Q("HighScore") as Label;
+
+        _score = _gameplayHUDVisualTree.Q("Score") as Label;
     }
 
     private void OnEnable()
     {
         _retryButton.RegisterCallback<ClickEvent>(OnRetryButtonClick);
         _toMainMenuButton.RegisterCallback<ClickEvent>(OnMainMenuButtonClick);
+
+        GameScore.OnScored += UpdateScoreDisplay;
     }
 
     private void OnDisable()
     {
         _retryButton.UnregisterCallback<ClickEvent>(OnRetryButtonClick);
         _toMainMenuButton.UnregisterCallback<ClickEvent>(OnMainMenuButtonClick);
+
+        GameScore.OnScored -= UpdateScoreDisplay;
     }
 
     public void DisplayGameEndedMenu()
     {
+        DisableAllDisplays();
         _endMenuVisualTree.style.display = DisplayStyle.Flex;
     }
 
@@ -58,5 +76,20 @@ public class GameHUDController : MonoBehaviour
     {
         Debug.Log("To Main Menu");
         _gameController.LoadLevel("MainMenu");
+    }
+
+    private void UpdateScoreDisplay(int newScore)
+    {
+        _score.text = "Score: " + newScore;
+    }
+
+    public void UpdateEndScore(int newScore)
+    {
+        _endScore.text = "Your Score: " + newScore;
+    }
+
+    public void UpdateHighScore(int newScore)
+    {
+        _highScore.text = "High Score: " + newScore;
     }
 }

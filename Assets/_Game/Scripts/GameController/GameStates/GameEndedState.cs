@@ -20,7 +20,18 @@ public class GameEndedState : State
         Debug.Log("STATE: Ended Game");
         Debug.Log("Listen for Player Inputs");
         Debug.Log("Display Game End Screen");
+
+        _controller.GameHUDController.UpdateEndScore(_controller.GameScore.Score);
+
+        if(_controller.GameScore.Score > SaveManager.Instance.ActiveSaveData.Score)
+        {
+            SaveManager.Instance.ActiveSaveData.Score = _controller.GameScore.Score;
+        }
+
+        _controller.GameHUDController.UpdateHighScore(SaveManager.Instance.ActiveSaveData.Score);
+        SaveManager.Instance.Save();
         _controller.GameHUDController.DisplayGameEndedMenu();
+        
     }
 
     public override void Exit()

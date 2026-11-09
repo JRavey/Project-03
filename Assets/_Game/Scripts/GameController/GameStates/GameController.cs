@@ -12,14 +12,16 @@ public class GameController : MonoBehaviour
     [SerializeField] public UnitSpawner _unitSpawner;
     [SerializeField] public InputBroadcaster _input;
     [SerializeField] public GameHUDController _gameHUDController;
+    [SerializeField] public GameScore _gameScore;
+
 
     public float TapLimitDuration => _tapLimitDuration;
-
     public Unit PlayerUnitPrefab => _playerUnitPrefab;
     public Transform PlayerUnitSpawnLocation => _playerUnitSpawnLocation;
     public UnitSpawner UnitSpawner => _unitSpawner;
     public InputBroadcaster Input => _input;
     public GameHUDController GameHUDController => _gameHUDController;
+    public GameScore GameScore => _gameScore;
 
     public void ReloadLevel()
     {
