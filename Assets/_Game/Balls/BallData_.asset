@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ad4793665a862142935769fa6a35977, type: 3}
   m_Name: BallData_
   m_EditorClassIdentifier: Assembly-CSharp::BallsData
-  <Visuals>k__BackingField: {fileID: 0}
+  <Visuals>k__BackingField: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   <Name>k__BackingField: default
   <Damage>k__BackingField: 3
