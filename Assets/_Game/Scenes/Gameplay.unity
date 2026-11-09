@@ -340,6 +340,7 @@ MonoBehaviour:
   _input: {fileID: 1810991362}
   _gameHUDController: {fileID: 874574344}
   _gameScore: {fileID: 449960952}
+  _ballManager: {fileID: 687933242}
 --- !u!4 &449960950
 Transform:
   m_ObjectHideFlags: 0
@@ -559,8 +560,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BallManager
   gameBalls:
   - {fileID: 1371585494}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1720436934}
+  - {fileID: 926672053}
 --- !u!1 &874574340
 GameObject:
   m_ObjectHideFlags: 0
